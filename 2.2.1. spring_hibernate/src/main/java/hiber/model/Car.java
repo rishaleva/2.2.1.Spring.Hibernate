@@ -51,13 +51,16 @@ public class Car {
         this.user = user;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     @Override
     public String toString() {
-        return "Car{" +
-                "id=" + id +
+        return "Car: " +
+                "id= " + id +
                 ", model='" + model + '\'' +
-                ", series=" + series +
-                '}';
+                ", series=" + series;
     }
 }
 

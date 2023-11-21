@@ -7,25 +7,24 @@ import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainApp {
    public static void main(String[] args) throws SQLException {
-      AnnotationConfigApplicationContext context = 
-            new AnnotationConfigApplicationContext(AppConfig.class);
+      AnnotationConfigApplicationContext context =
+              new AnnotationConfigApplicationContext(AppConfig.class);
 
       UserService userService = context.getBean(UserService.class);
 
-      Car car1 = new Car("Peugeot",308);
-      Car car2 = new Car("Audi",3);
-      Car car3 = new Car("Mazda",6);
-      Car car4 = new Car("BMW",7);
+      Car car1 = new Car("Peugeot", 308);
+      Car car2 = new Car("Audi", 3);
+      Car car3 = new Car("Mazda", 6);
+      Car car4 = new Car("BMW", 7);
 
-      User user1 = new User("User1", "Lastname1", "user1@mail.ru");
-      User user2 = new User("User2", "Lastname2", "user2@mail.ru");
-      User user3 = new User("User3", "Lastname3", "user3@mail.ru");
-      User user4 = new User("User4", "Lastname4", "user4@mail.ru");
+      User user1 = new User("Irina", "Inozemtseva", "irinainoz@gmail.ru");
+      User user2 = new User("Paul", "Landers", "paullanders@gmail.ru");
+      User user3 = new User("Corey", "Taylor", "cortay@gmail.ru");
+      User user4 = new User("Pepe", "Pepovich", "pepe@gmail.ru");
 
       user1.setCar(car1);
       user2.setCar(car2);
@@ -37,26 +36,16 @@ public class MainApp {
       userService.add(user3);
       userService.add(user4);
 
+      System.out.println(userService.getUserWithCarByModelAndSeries("Peugeot", 308));
+      userService.getUserWithCarByModelAndSeries("Audi", 3);
+      userService.getUserWithCarByModelAndSeries("Mazda", 6);
+      userService.getUserWithCarByModelAndSeries("BMW", 7);
+
       List<User> users = userService.listUsers();
       for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
-         System.out.println("Car = " +user.getCar());
-         System.out.println("_____________________");
+         System.out.println(user + " has a " + user.getCar());
       }
 
-      User userCar = userService.getUserWithCarByModelAndSeries("Peugeot",308);
-      System.out.println(userCar);
-      System.out.println(userCar.getId());
-      System.out.println(userCar.getFirstName());
-      System.out.println(userCar.getLastName());
-      System.out.println(userCar.getEmail());
-
-      userService.getUserWithCarByModelAndSeries("Audi",3);
-      userService.getUserWithCarByModelAndSeries("Mazda",6);
-      userService.getUserWithCarByModelAndSeries("BMW",7);
       context.close();
    }
 }

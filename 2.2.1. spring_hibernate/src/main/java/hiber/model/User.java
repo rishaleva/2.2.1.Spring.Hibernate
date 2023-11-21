@@ -22,8 +22,9 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   public User() {}
-   
+   public User() {
+   }
+
    public User(String firstName, String lastName, String email) {
       this.firstName = firstName;
       this.lastName = lastName;
@@ -72,11 +73,10 @@ public class User {
 
    @Override
    public String toString() {
-      return "User{" +
-              "id=" + id +
+      return "User: " +
+              "id= " + id +
               ", firstName='" + firstName + '\'' +
               ", lastName='" + lastName + '\'' +
-              ", email='" + email + '\'' +
-              '}';
+              ", email='" + email + '\'';
    }
 }
